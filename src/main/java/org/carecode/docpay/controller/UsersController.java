@@ -31,7 +31,7 @@ public class UsersController {
     @FXML private TableColumn<User, String> colName;
     @FXML private TableColumn<User, User.Role> colRole;
     @FXML private TableColumn<User, Boolean> colActive;
-    @FXML private TableColumn<User, String> colLastLogin;
+    @FXML private TableColumn<User, java.time.Instant> colLastLogin;
     @FXML private TextField txtSearch;
 
     private final ObservableList<User> data = FXCollections.observableArrayList();
@@ -59,12 +59,11 @@ public class UsersController {
         });
         colLastLogin.setCellValueFactory(new PropertyValueFactory<>("lastLoginAt"));
         colLastLogin.setCellFactory(tc -> new TableCell<>(){
-            @Override protected void updateItem(String v, boolean empty) {
+            @Override protected void updateItem(java.time.Instant v, boolean empty) {
                 super.updateItem(v, empty);
                 if (empty) { setText(null); return; }
-                User u = getTableView().getItems().get(getIndex());
-                if (u.getLastLoginAt() == null) { setText(""); return; }
-                var z = u.getLastLoginAt().atZone(ZoneId.systemDefault());
+                if (v == null) { setText(""); return; }
+                var z = v.atZone(ZoneId.systemDefault());
                 setText(dtf.format(z));
             }
         });

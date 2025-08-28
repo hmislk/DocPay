@@ -26,6 +26,7 @@ import org.carecode.docpay.service.SettingsService;
 import java.math.RoundingMode;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.Separator;
 
 public class PaymentPrintController {
     @FXML private StackPane previewArea;
