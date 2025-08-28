@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.AppointmentsController">
+    <top>
+        <HBox spacing="10">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Appointments" styleClass="title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button text="New" onAction="#onNew" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Appointments placeholder" />
+        </VBox>
+    </center>
+</BorderPane>
+

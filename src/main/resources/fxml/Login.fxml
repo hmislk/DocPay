@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.LoginController">
+    <center>
+        <VBox alignment="CENTER" spacing="10.0">
+            <padding><Insets top="40" bottom="40" left="40" right="40"/></padding>
+            <Label text="DocPay" styleClass="title" />
+            <Label fx:id="lblMessage" textFill="red" />
+            <TextField fx:id="txtUsername" promptText="Username" />
+            <PasswordField fx:id="txtPassword" promptText="Password" />
+            <Button fx:id="btnLogin" text="Login" onAction="#onLogin" maxWidth="Infinity" />
+        </VBox>
+    </center>
+</BorderPane>
+

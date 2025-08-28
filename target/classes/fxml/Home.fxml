@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.HomeController">
+    <top>
+        <HBox spacing="10">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="DocPay" styleClass="title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblWelcome" />
+            <Button text="Logout" onAction="#onLogout" />
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="6">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Button text="Dashboard" onAction="#showDashboard" maxWidth="Infinity" />
+            <Button text="Doctors" onAction="#showDoctors" maxWidth="Infinity" />
+            <Button text="Users" onAction="#showUsers" maxWidth="Infinity" />
+            <Button text="Payments" onAction="#showPayments" maxWidth="Infinity" />
+            <Button text="Settings" onAction="#showSettings" maxWidth="Infinity" />
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea">
+            <children>
+                <VBox alignment="CENTER" spacing="12" fx:id="dashboardPane">
+                    <padding><Insets top="30" bottom="30" left="30" right="30"/></padding>
+                    <Label text="Dashboard" styleClass="title" />
+                    <Label text="Choose a section from the left." />
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

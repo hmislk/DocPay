@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.PaymentSearchController">
+    <top>
+        <HBox spacing="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="From" />
+            <DatePicker fx:id="dpFrom" />
+            <Label text="To" />
+            <DatePicker fx:id="dpTo" />
+            <Label text="Doctor" />
+            <ComboBox fx:id="cmbDoctor" prefWidth="200" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button text="Search" onAction="#onSearch" />
+            <Button text="Clear" onAction="#onClear" />
+            <Button text="Print" onAction="#onPrint" />
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tblPayments">
+            <columns>
+                <TableColumn fx:id="colReceipt" text="Receipt" prefWidth="120" />
+                <TableColumn fx:id="colDate" text="Date" prefWidth="150" />
+                <TableColumn fx:id="colDoctor" text="Doctor" prefWidth="220" />
+                <TableColumn fx:id="colAmount" text="Amount" prefWidth="100" />
+                <TableColumn fx:id="colPrinted" text="Prints" prefWidth="70" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.PaymentsController">
+    <top>
+        <HBox spacing="10">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Payments" styleClass="title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button text="New Payment" onAction="#showNewPayment" />
+            <Button text="Search Payments" onAction="#showSearch" />
+        </HBox>
+    </top>
+    <center>
+        <StackPane fx:id="contentArea">
+            <children>
+                <VBox alignment="CENTER" spacing="12">
+                    <padding><Insets top="30" bottom="30" left="30" right="30"/></padding>
+                    <Label text="Select New Payment or Search." />
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

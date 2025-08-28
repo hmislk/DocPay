@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.UsersController">
+    <top>
+        <HBox spacing="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Users" styleClass="title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtSearch" promptText="Search username or name" HBox.hgrow="ALWAYS" />
+            <Button text="Refresh" onAction="#onRefresh" />
+            <Button text="New" onAction="#onNew" />
+            <Button text="Edit" onAction="#onEdit" />
+            <Button text="Deactivate" onAction="#onDeactivate" />
+            <Button text="Reset Password" onAction="#onResetPassword" />
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tblUsers">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60" />
+                <TableColumn fx:id="colUsername" text="Username" prefWidth="160" />
+                <TableColumn fx:id="colName" text="Name" prefWidth="200" />
+                <TableColumn fx:id="colRole" text="Role" prefWidth="100" />
+                <TableColumn fx:id="colActive" text="Active" prefWidth="70" />
+                <TableColumn fx:id="colLastLogin" text="Last Login" prefWidth="180" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
+

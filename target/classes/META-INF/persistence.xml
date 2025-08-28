@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+  <persistence-unit name="docpayPU">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.carecode.docpay.model.User</class>
+    <class>org.carecode.docpay.model.Doctor</class>
+    <class>org.carecode.docpay.model.Patient</class>
+    <class>org.carecode.docpay.model.Appointment</class>
+    <class>org.carecode.docpay.model.DoctorPayment</class>
+    <class>org.carecode.docpay.model.ReceiptSequence</class>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/docpay?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="Bud7NilB"/>
+
+      <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+      <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+      <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.weaving" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,132 @@
+# System Summary
+Create a JavaFX standalone desktop app (Java 11, Maven) to manage doctor payments at Galle Cooperative Hospital.
+Runs locally on a single Windows PC using embedded H2 database.
+Includes: login, doctor registration, patient registration, appointment scheduling, and doctor payment processing.
+
+# Stack
+- Java 11 + Maven
+- JavaFX for UI
+- H2 Embedded DB
+- JPA (EclipseLink)
+- jpackage for Windows .exe installer
+- BCrypt for password hashing
+
+# Entities
+
+## User
+- id: Long
+- username: String (unique, lowercased)
+- passwordHash: String (BCrypt)
+- name: String
+- role: Enum {ADMIN, CASHIER, AUDITOR}
+- isActive: boolean
+- createdAt: Instant
+- lastLoginAt: Instant
+
+## Doctor
+- id: Long
+- name: String
+- speciality: String
+- phone: String
+- email: String
+- details: String
+- isActive: boolean
+- createdAt: Instant
+
+## Patient
+- id: Long
+- name: String
+- nic: String (optional)
+- phone: String
+- dob: LocalDate
+- gender: Enum {MALE, FEMALE, OTHER}
+- address: String
+- createdAt: Instant
+
+## Appointment
+- id: Long
+- doctor: Doctor
+- patient: Patient
+- appointmentDateTime: Instant
+- status: Enum {SCHEDULED, COMPLETED, CANCELLED}
+- createdAt: Instant
+- createdBy: User
+
+## DoctorPayment
+- id: Long
+- receiptId: String (yyyy/dp/00001)
+- doctor: Doctor
+- description: String
+- value: BigDecimal
+- paidAt: Instant
+- createdAt: Instant
+- createdBy: User
+- cancelled: boolean
+- cancelledBy: User
+- cancelledAt: Instant
+- cancelReason: String
+- printCount: int
+- lastPrintedAt: Instant
+
+# Receipt Number Generator
+Create receipt_sequence (year INT PK, next_number INT)
+Format: yyyy/dp/00001
+Atomic update required
+
+# Features
+
+## Login
+- On first launch, request username + password → save as ADMIN.
+- Secure login thereafter with hashed password.
+
+## Doctor Management
+- Add / Edit / View doctors
+
+## Patient Management
+- Add / Edit / View patients
+- Search by name, NIC, phone
+
+## Appointment Scheduling
+- Select doctor + patient
+- Choose date/time
+- Mark status: Scheduled, Completed, Cancelled
+- Appointments viewable per doctor/patient
+
+## Doctor Payments
+- Select doctor
+- Enter amount, description, date/time
+- Generate receipt ID
+- Allow print and reprint
+- Allow cancel with reason
+
+## Audit + History
+- All entities must track who created/edited/cancelled
+- Track login timestamps
+
+## UI Screens
+- Login
+- Home
+- Doctor CRUD
+- Patient CRUD
+- Appointment Scheduler
+- Doctor Payment Creation
+- Payment List + Search
+- Print Preview
+- Cancel Payment
+
+## Database
+- Embedded H2 (file-based)
+- Auto schema generation using JPA
+- Save database in `~/AppData/DocPay/db.mv.db`
+
+## Packaging
+- Use jpackage to build `.exe` installer
+- Include Java runtime
+- Offline-capable
+
+# Deliverables
+- Maven project
+- JavaFX GUI
+- Windows installer
+- Embedded H2 DB
+- README.md with install + usage

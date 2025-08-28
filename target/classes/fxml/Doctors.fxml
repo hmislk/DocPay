@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.DoctorsController">
+    <top>
+        <HBox spacing="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Doctors" styleClass="title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtSearch" promptText="Search name, speciality, phone, email" HBox.hgrow="ALWAYS" />
+            <Button text="Refresh" onAction="#onRefresh" />
+            <Button text="New" onAction="#onNew" />
+            <Button text="Edit" onAction="#onEdit" />
+            <Button text="Deactivate" onAction="#onDeactivate" />
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tblDoctors">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60" />
+                <TableColumn fx:id="colName" text="Name" prefWidth="180" />
+                <TableColumn fx:id="colSpeciality" text="Speciality" prefWidth="140" />
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="120" />
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="180" />
+                <TableColumn fx:id="colActive" text="Active" prefWidth="70" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

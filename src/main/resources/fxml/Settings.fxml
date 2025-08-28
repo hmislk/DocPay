@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.SettingsController">
+    <top>
+        <HBox spacing="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Settings" styleClass="title" />
+        </HBox>
+    </top>
+    <center>
+        <GridPane hgap="10" vgap="10">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30" />
+                <ColumnConstraints percentWidth="70" />
+            </columnConstraints>
+            <children>
+                <Label text="Hospital Name*" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="txtHospitalName" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Address Line 1" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <TextField fx:id="txtAddr1" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Address Line 2" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="txtAddr2" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Phone" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="txtPhone" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                <Label text="Email" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <TextField fx:id="txtEmail" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+                <Label text="Receipt Title*" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                <TextField fx:id="txtReceiptTitle" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+                <Label text="Footer Line 1" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                <TextField fx:id="txtFooter1" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+                <Label text="Footer Line 2" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+                <TextField fx:id="txtFooter2" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+
+                <Label text="Logo" GridPane.rowIndex="8" GridPane.columnIndex="0" />
+                <HBox spacing="8" GridPane.rowIndex="8" GridPane.columnIndex="1">
+                    <ImageView fx:id="imgLogo" fitWidth="180" fitHeight="80" preserveRatio="true" />
+                    <VBox spacing="6">
+                        <Button text="Choose..." onAction="#onChooseLogo" />
+                        <Button text="Clear" onAction="#onClearLogo" />
+                        <Label text="PNG/JPG recommended" />
+                    </VBox>
+                </HBox>
+
+                <Separator GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+                <Label text="Printer" GridPane.rowIndex="10" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cmbPrinter" GridPane.rowIndex="10" GridPane.columnIndex="1" />
+
+                <Label text="Paper (mm) W x H" GridPane.rowIndex="11" GridPane.columnIndex="0" />
+                <HBox spacing="6" GridPane.rowIndex="11" GridPane.columnIndex="1">
+                    <TextField fx:id="txtPageW" prefWidth="80" />
+                    <Label text="x" />
+                    <TextField fx:id="txtPageH" prefWidth="80" />
+                    <Button text="A4" onAction="#setPresetA4" />
+                    <Button text="80mm" onAction="#setPreset80mm" />
+                </HBox>
+
+                <Label text="Margins (mm) T R B L" GridPane.rowIndex="12" GridPane.columnIndex="0" />
+                <HBox spacing="6" GridPane.rowIndex="12" GridPane.columnIndex="1">
+                    <TextField fx:id="txtMT" prefWidth="60" />
+                    <TextField fx:id="txtMR" prefWidth="60" />
+                    <TextField fx:id="txtMB" prefWidth="60" />
+                    <TextField fx:id="txtML" prefWidth="60" />
+                </HBox>
+
+                <Label text="Orientation" GridPane.rowIndex="13" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cmbOrientation" GridPane.rowIndex="13" GridPane.columnIndex="1" />
+
+                <Label text="Scale %" GridPane.rowIndex="14" GridPane.columnIndex="0" />
+                <TextField fx:id="txtScale" GridPane.rowIndex="14" GridPane.columnIndex="1" prefWidth="80" />
+            </children>
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox spacing="8" alignment="CENTER_RIGHT">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label fx:id="lblError" textFill="red" HBox.hgrow="ALWAYS" />
+            <Button text="Save" onAction="#onSave" />
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carecode.docpay.controller.UserFormController">
+    <center>
+        <GridPane hgap="10" vgap="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30" />
+                <ColumnConstraints percentWidth="70" />
+            </columnConstraints>
+            <children>
+                <Label text="Username*" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="txtUsername" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Name*" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <TextField fx:id="txtName" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Role*" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cmbRole" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Active" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <CheckBox fx:id="chkActive" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                <Separator GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+
+                <Label text="Password" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                <PasswordField fx:id="txtPassword" GridPane.rowIndex="5" GridPane.columnIndex="1" promptText="Required for new user" />
+
+                <Label text="Confirm" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                <PasswordField fx:id="txtConfirm" GridPane.rowIndex="6" GridPane.columnIndex="1" promptText="Repeat password" />
+            </children>
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox spacing="8" alignment="CENTER_RIGHT">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label fx:id="lblError" textFill="red" HBox.hgrow="ALWAYS" />
+            <Button text="Cancel" onAction="#onCancel" />
+            <Button text="Save" onAction="#onSave" />
+        </HBox>
+    </bottom>
+</BorderPane>
+
