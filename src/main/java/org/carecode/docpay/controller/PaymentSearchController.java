@@ -24,7 +24,7 @@ public class PaymentSearchController {
     @FXML private ComboBox<Doctor> cmbDoctor;
     @FXML private TableView<DoctorPayment> tblPayments;
     @FXML private TableColumn<DoctorPayment, String> colReceipt;
-    @FXML private TableColumn<DoctorPayment, String> colDate;
+    @FXML private TableColumn<DoctorPayment, java.time.Instant> colDate;
     @FXML private TableColumn<DoctorPayment, String> colDoctor;
     @FXML private TableColumn<DoctorPayment, BigDecimal> colAmount;
     @FXML private TableColumn<DoctorPayment, Integer> colPrinted;
@@ -35,9 +35,18 @@ public class PaymentSearchController {
 
     @FXML
     public void initialize() {
-        cmbDoctor.setConverter(new javafx.util.StringConverter<>() {
-            @Override public String toString(Doctor d) { return d == null ? "" : d.getName(); }
-            @Override public Doctor fromString(String s) { return null; }
+        // Show doctor names in dropdown and selected button cell
+        cmbDoctor.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            @Override protected void updateItem(Doctor d, boolean empty) {
+                super.updateItem(d, empty);
+                setText(empty || d == null ? null : d.getName());
+            }
+        });
+        cmbDoctor.setButtonCell(new javafx.scene.control.ListCell<>() {
+            @Override protected void updateItem(Doctor d, boolean empty) {
+                super.updateItem(d, empty);
+                setText(empty || d == null ? null : d.getName());
+            }
         });
         loadDoctors();
         setupTable();
@@ -57,11 +66,11 @@ public class PaymentSearchController {
         colReceipt.setCellValueFactory(new PropertyValueFactory<>("receiptId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("paidAt"));
         colDate.setCellFactory(tc -> new TableCell<>() {
-            @Override protected void updateItem(String v, boolean empty) {
+            @Override protected void updateItem(java.time.Instant v, boolean empty) {
                 super.updateItem(v, empty);
                 if (empty) { setText(null); return; }
-                DoctorPayment p = getTableView().getItems().get(getIndex());
-                var z = p.getPaidAt().atZone(ZoneId.systemDefault());
+                if (v == null) { setText(""); return; }
+                var z = v.atZone(ZoneId.systemDefault());
                 setText(dtf.format(z));
             }
         });
@@ -100,4 +109,3 @@ public class PaymentSearchController {
         if (navigator != null) navigator.goToPrint(p);
     }
 }
-

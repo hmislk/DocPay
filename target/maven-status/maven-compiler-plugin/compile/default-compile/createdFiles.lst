@@ -24,6 +24,7 @@ org\carecode\docpay\controller\DoctorsController.class
 org\carecode\docpay\util\JPAUtil.class
 org\carecode\docpay\model\ReceiptSequence.class
 org\carecode\docpay\model\DoctorPayment.class
+org\carecode\docpay\controller\PaymentSearchController$3.class
 org\carecode\docpay\controller\LoginController.class
 org\carecode\docpay\controller\PaymentSearchController.class
 org\carecode\docpay\model\Patient.class

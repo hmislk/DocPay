@@ -85,6 +85,78 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Unpack JavaFX jmods for jlink (needed by jpackage custom runtime) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-javafx-jmods</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.openjfx</groupId>
+                                    <artifactId>javafx-jmods</artifactId>
+                                    <version>${javafx.version}</version>
+                                    <classifier>win</classifier>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/javafx-jmods</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Create Windows installer using jpackage -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <configuration>
+                    <name>DocPay</name>
+                    <appVersion>${project.version}</appVersion>
+                    <vendor>Galle Cooperative Hospital</vendor>
+                    <destination>${project.build.directory}/installer</destination>
+                    <input>${project.build.directory}</input>
+                    <mainJar>${project.artifactId}-${project.version}.jar</mainJar>
+                    <mainClass>${exec.mainClass}</mainClass>
+                    <type>msi</type>
+                    <winMenu>true</winMenu>
+                    <winShortcut>true</winShortcut>
+                    <winDirChooser>true</winDirChooser>
+                    <!-- Uncomment and point to an .ico if available -->
+                    <!-- <icon>${project.basedir}/src/main/resources/icons/docpay.ico</icon> -->
+
+                    <!-- Build custom runtime image with JavaFX modules -->
+                    <runtimeImage>${project.build.directory}/runtime</runtimeImage>
+                    <jlinkOptions>
+                        <jlinkOption>--strip-debug</jlinkOption>
+                        <jlinkOption>--no-header-files</jlinkOption>
+                        <jlinkOption>--no-man-pages</jlinkOption>
+                        <jlinkOption>--compress=2</jlinkOption>
+                        <jlinkOption>--module-path</jlinkOption>
+                        <jlinkOption>${project.build.directory}/javafx-jmods;${java.home}/jmods</jlinkOption>
+                        <jlinkOption>--add-modules</jlinkOption>
+                        <jlinkOption>java.base,java.desktop,java.logging,java.sql,java.xml,javafx.controls,javafx.fxml</jlinkOption>
+                    </jlinkOptions>
+
+                    <javaOptions>
+                        <!-- Open for JPA reflection if needed -->
+                        <javaOption>--add-opens</javaOption>
+                        <javaOption>java.base/java.lang=ALL-UNNAMED</javaOption>
+                        <javaOption>--add-opens</javaOption>
+                        <javaOption>java.base/java.util=ALL-UNNAMED</javaOption>
+                    </javaOptions>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

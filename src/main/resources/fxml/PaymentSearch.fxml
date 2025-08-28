@@ -11,7 +11,7 @@
             <Label text="To" />
             <DatePicker fx:id="dpTo" />
             <Label text="Doctor" />
-            <ComboBox fx:id="cmbDoctor" prefWidth="200" />
+            <ComboBox fx:id="cmbDoctor" prefWidth="200" promptText="Any" />
             <Pane HBox.hgrow="ALWAYS" />
             <Button text="Search" onAction="#onSearch" />
             <Button text="Clear" onAction="#onClear" />
@@ -30,4 +30,3 @@
         </TableView>
     </center>
 </BorderPane>
-
