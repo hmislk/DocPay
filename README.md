@@ -23,3 +23,7 @@ Packaging
 Notes
 - Entities defined: User, Doctor, Patient, Appointment, DoctorPayment, ReceiptSequence
 - Minimal login flow implemented; further screens TBD.
+
+## Licence
+
+This project is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
